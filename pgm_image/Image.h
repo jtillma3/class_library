@@ -4,20 +4,24 @@
  * Author: J. S. Tillman
  */
 
+
+
 #ifndef IMAGE_H
 #define IMAGE_H
+
+
 class Image
 {
     public:
         Image();
         Image(const Image& oldImage);
-        Image(int r, int c, int g);
+        Image(int r, int c, short unsigned int g);
         Image (char * fileName);
         ~Image();
-        void setImageInfo(int r, int c, int g);
-        void getImageInfo(int& r, int& c, int& g);
+        int setImageInfo(int r, int c, short unsigned int g);
+        void getImageInfo(int& r, int& c, short unsigned int& g);
         int getPixelValue(int r, int c);
-        void setPixelValue(int r, int c, int v);
+        bool setPixelValue(int r, int c, int v);
         bool inBounds(int r, int c);
         void getSubImage(int uR, int uC, int lR, int lC, Image& oldImage);
         void enlargeImage(int v, Image& oldImage);
@@ -31,11 +35,11 @@ class Image
         Image operator+(const Image& oldImage);
         Image operator-(const Image& oldImage);
         void negateImage(Image &oldImage);
-        Image calculateIntegral(void){
+        Image calculateIntegral(void);
     private:
         int rows;
         int columns;
-        int maxGrayLevel;
+        unsigned short int maxGrayLevel;
         unsigned short int **pixels; 
     };
 #endif
